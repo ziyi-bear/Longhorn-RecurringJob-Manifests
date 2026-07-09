@@ -1,0 +1,12 @@
+# 1. Local Snapshot Job
+# Keeps local space usage tiny while providing a quick rollback point.
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: snapshot-local-minimal
+  namespace: longhorn-system
+spec:
+  task: "snapshot"
+  cron: "0 1 * * *"      # Runs daily at 1:00 AM
+  retain: 2              # Only keeps the 2 most recent snapshots locally
+  concurrency: 1         # Processes 1 volume at a time to minimize IOPS
