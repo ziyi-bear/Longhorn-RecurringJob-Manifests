@@ -19,7 +19,7 @@ This repository provides two recurring jobs targeted at the `longhorn-system` na
 2. **Yearly S3 Backup** ([backup-s3-yearly.yaml](file:///d:/Anti-github/Longhorn-RecurringJob-Manifests/backup-s3-yearly.yaml))
    - **Task**: `backup`
    - **Schedule**: `0 2 * * *` (Daily at 2:00 AM, running after the local snapshot)
-   - **Retention**: Keeps `365` days (1 year) of backups in AWS S3 or compatible object storage.
+   - **Retention**: Keeps `100` backups in AWS S3 or compatible object storage (the maximum allowed by Longhorn's webhook validator).
    - **Concurrency**: `1` (Processes one volume backup at a time to minimize CPU and outbound network load).
 
 ---

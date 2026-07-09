@@ -1,5 +1,5 @@
 # 2. S3 Backup Job
-# Sends data to your unlimited AWS S3 bucket and retains it for a year.
+# Sends data to your unlimited AWS S3 bucket and retains up to the maximum limit.
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
 metadata:
@@ -8,5 +8,5 @@ metadata:
 spec:
   task: "backup"
   cron: "0 2 * * *"      # Runs daily at 2:00 AM (after local snapshot)
-  retain: 365            # Keeps 365 days of backups in S3 (1 year)
+  retain: 100            # Keeps 100 backups in S3 (maximum allowed by Longhorn webhook)
   concurrency: 1         # Processes 1 volume at a time to minimize CPU/IOPS
